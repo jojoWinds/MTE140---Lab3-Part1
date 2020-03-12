@@ -8,7 +8,14 @@ using namespace std;
 string get_status_str(bool status) {
     return status ? "TEST PASSED" : "TEST FAILED";
 }
+int main()
+{
+	
+	
+	return 0;
+}
 
+/*
 int main() {
     PriorityQueueTest pqueue_test;
     BinarySearchTreeTest bst_test;
@@ -59,4 +66,4 @@ int main() {
     	cout << bst_test_descriptions[i] << endl << get_status_str(bst_test_results[i]) << endl;
 	}
 	cout << endl;	
-}
+}*/
