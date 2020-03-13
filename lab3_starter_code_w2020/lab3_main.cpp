@@ -1,16 +1,17 @@
 #include <iostream>
 #include <string>
 #include "lab3_tests.hpp"
+#include "lab3_binary_search_tree.hpp"
 
 using namespace std;
 
 // PURPOSE: Returns the test result
-string get_status_str(bool status) {
-    return status ? "TEST PASSED" : "TEST FAILED";
-}
+//string get_status_str(bool status) {
+//    return status ? "TEST PASSED" : "TEST FAILED";
+//}
 int main()
 {
-	
+	BinarySearchTree tree1;
 	
 	return 0;
 }
