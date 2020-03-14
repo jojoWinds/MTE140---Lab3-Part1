@@ -119,7 +119,7 @@ unsigned int PriorityQueue::get_size() const {
 	else
 	{
 		// manual check for size 
-		/*
+		/*	
 		int count = 0;
 		while(heap[count])
 		{
@@ -250,7 +250,47 @@ bool PriorityQueue::dequeue() {
 	//2nd case: list is populated
 	else
 	{
-		while( size + 1 > 1 && heap[(size+1)/2]->priority < heap[size + 1]->priority)
+		int j = size;
+		TaskItem *temp = heap[j];
+		heap[j] = heap[1];
+		heap[1] = temp;
+		
+		TaskItem *del = heap[j];
+		delete del;
+		del = NULL;
+		
+		size--;
+		
+		j = 1;
+		
+		
+	while (j < size)
+		{
+			if(heap[j] > heap[2*j]) //compare parent w/ left child
+			{
+				TaskItem *temp = heap[j];
+				heap[j] = heap[2*j];
+				heap[2*j] = temp;//swap
+			}
+			else if (heap[j] > heap[2*j+1]) //compare parent w/ right child
+			{
+				TaskItem *temp = heap[j];
+				heap[j] = heap[2*j+1];
+				heap[2*j+1] = temp;
+			}
+		/*	else
+			{
+				TaskItem *temp = heap[j];
+				heap[j] = heap[j/2];
+				heap[j/2] = temp;
+			}
+		*/
+			j++;
+		}
+		
+	}
+		
+	/*	while( size + 1 > 1 && heap[(size+1)/2]->priority > heap[size + 1]->priority)
 		{
 			TaskItem *temp = heap[size + 1];
 			heap[size + 1] = heap[(size + 1)/2];
@@ -258,8 +298,8 @@ bool PriorityQueue::dequeue() {
 			size = (size+1)/2; //(size + 1) /= 2;
 		}		
 	}
-	
-	size--;
+	*/
+//	size--;
 	return true;
 }
 #endif 

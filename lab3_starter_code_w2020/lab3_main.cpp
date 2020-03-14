@@ -31,6 +31,9 @@ int main()
 	queue1.enqueue(PriorityQueue::TaskItem(50,"5th entered item"));
 	queue1.print();
 	
+	queue1.dequeue();
+	queue1.print();
+	
 	return 0;
 }
 
