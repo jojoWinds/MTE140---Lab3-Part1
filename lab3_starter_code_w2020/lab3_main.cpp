@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "lab3_tests.hpp"
-#include "lab3_binary_search_tree.hpp"
+#include "lab3_priority_queue.hpp"
 
 using namespace std;
 
@@ -11,7 +11,19 @@ using namespace std;
 //}
 int main()
 {
-	BinarySearchTree tree1;
+	PriorityQueue queue1(2);
+	queue1.print();
+//	cout << queue1.get_size() << endl;
+//	cout << queue1.full() << endl;
+	
+	queue1.enqueue(PriorityQueue::TaskItem(1,"1st entered item"));
+	queue1.print();
+	
+	queue1.enqueue(PriorityQueue::TaskItem(112,"2nd entered item"));
+	queue1.print();
+	
+	queue1.enqueue(PriorityQueue::TaskItem(11,"3rd entered item"));
+	queue1.print();	
 	
 	return 0;
 }
