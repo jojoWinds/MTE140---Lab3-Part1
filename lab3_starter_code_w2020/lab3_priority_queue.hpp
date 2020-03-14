@@ -168,12 +168,14 @@ void PriorityQueue::print() const {
 	//case 2: non empty list
 	else
 	{
+		cout << "**************************************" << endl;
 		TaskItem* temp;
-		for (int i=1; i < size; i++)
+		for (int i=1; i <= size; i++)
 		{
 			temp = heap[i];
 			cout << "Position: " << i << '\n' << "Priority: " << temp->priority << '\n' << "Description: " << temp->description << '\n' << "------------" << endl;			
 		}
+		cout << "**************************************" << endl;
 	}
 }
 
@@ -207,8 +209,10 @@ bool PriorityQueue::enqueue( TaskItem val ) {
 	
 	//case 1: base case: empty heap
 	if (size == 0)
-	{
+	{		
 		heap [1] = new TaskItem(val);
+		size++;
+		return true;
 	}
 	
 	//case 2: general case: non-empty heap
@@ -216,17 +220,19 @@ bool PriorityQueue::enqueue( TaskItem val ) {
 	{
 		int i = size + 1;
 		heap[i] = new TaskItem(val);
-		while (i > 1 && heap[i/2]->priority < heap[i]->priority)
+		while (i > 1 && heap[i/2]->priority > heap[i]->priority)
 		{
+			cout << "heap[i/2]->priority: " << heap[i/2]->priority << '\n' << "heap[i]->priority: " << heap[i]->priority << endl;
 			TaskItem* temp = heap[i]; //swap values
 			heap[i] = heap[i/2];
 			heap[i/2] = temp;
 			i /= 2;
 		}
+		size++;
+		return true;	
 	}
 	
-	size++;
-	return true;
+	return false;
 }
 
 // PURPOSE: Removes the top element with the maximum priority
@@ -250,8 +256,7 @@ bool PriorityQueue::dequeue() {
 			heap[size + 1] = heap[(size + 1)/2];
 			heap[(size + 1)/2] = temp;
 			size = (size+1)/2; //(size + 1) /= 2;
-		}
-		
+		}		
 	}
 	
 	size--;
