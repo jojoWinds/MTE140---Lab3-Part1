@@ -250,6 +250,7 @@ bool PriorityQueue::dequeue() {
 	//2nd case: list is populated
 	else
 	{
+		//delete node and replace it
 		int j = size;
 		TaskItem *temp = heap[j];
 		heap[j] = heap[1];
@@ -261,33 +262,87 @@ bool PriorityQueue::dequeue() {
 		
 		size--;
 		
-		j = 1;
+		//heapify (fix the heap)
+		//if (value in replacement node < its parent node)
+		//	Filter the replacement node UP the binary tree
+		//else
+		//	Filter the replacement node DOWN the binary tree
 		
+		int i = 1;	
 		
-	while (j < size)
+		while(2*i < size+1)
 		{
-			if(heap[j] > heap[2*j]) //compare parent w/ left child
-			{
-				TaskItem *temp = heap[j];
-				heap[j] = heap[2*j];
-				heap[2*j] = temp;//swap
-			}
-			else if (heap[j] > heap[2*j+1]) //compare parent w/ right child
-			{
-				TaskItem *temp = heap[j];
-				heap[j] = heap[2*j+1];
-				heap[2*j+1] = temp;
-			}
-		/*	else
-			{
-				TaskItem *temp = heap[j];
-				heap[j] = heap[j/2];
-				heap[j/2] = temp;
-			}
-		*/
-			j++;
+			unsigned int child = 2*i;
+			if (child+1 < size+1 && heap[child+1] < heap[child])
+				child += 1;
+			if (last <= heap[child])
+				break;
+			heap[i] = heap[child];
+			i = child;
 		}
 		
+		heap[i] = &last;
+		return true;
+		
+//			
+//		if(size > 2) //more than 2 nodes
+//		{
+//			while(j < size)
+//			{
+//				//decide which child to switch w/ parent
+//				if(heap[2*j] < heap[2*j+1]) //left child < right child
+//				{
+//					if (heap[2*j] < heap[j])
+//					{
+//						temp = heap[j];
+//						heap[j] = heap[2*j];
+//						heap[2*j] = temp;
+//					}
+//				}
+//				else if (heap[2*j+1] < heap[2*j]) //right child < left child
+//				{
+//					if (heap[2*j+1] < heap[j])
+//					{
+//						temp = heap[j];
+//						heap[j] = heap[2*j+1];
+//						heap[2*j+1] = temp;					
+//					}
+//				}			
+//				j++;
+//			}
+//		}
+//		else //just 2 nodes
+//		{
+//			if(heap[j] > heap[2*j])
+//			{
+//				temp = heap[j];
+//				heap[j] = heap[2*j];
+//				heap[2*j] = temp;
+//			}
+//		}		
+//		
+//		
+//		
+//		j = 1;
+		
+//		while (j <= size)
+//		{
+//			if(heap[j] > heap[2*j]) //compare parent w/ left child
+//			{
+//				TaskItem *temp = heap[j];
+//				heap[j] = heap[2*j];
+//				heap[2*j] = temp; //swap
+//			}
+//			else if (heap[j] > heap[2*j+1]) //compare parent w/ right child
+//			{
+//				TaskItem *temp = heap[j];
+//				heap[j] = heap[2*j+1];
+//				heap[2*j+1] = temp; //swap
+//			}
+//			j++;
+//		}
+		
+//		return true;	
 	}
 		
 	/*	while( size + 1 > 1 && heap[(size+1)/2]->priority > heap[size + 1]->priority)
@@ -299,7 +354,7 @@ bool PriorityQueue::dequeue() {
 		}		
 	}
 	*/
-//	size--;
-	return true;
+	
+	return false;
 }
 #endif 
