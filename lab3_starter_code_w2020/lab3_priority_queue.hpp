@@ -220,7 +220,7 @@ bool PriorityQueue::enqueue( TaskItem val ) {
 	{
 		int i = size + 1;
 		heap[i] = new TaskItem(val);
-		while (i > 1 && heap[i/2]->priority > heap[i]->priority)
+		while (i > 1 && heap[i/2]->priority < heap[i]->priority)
 		{
 			cout << "heap[i/2]->priority: " << heap[i/2]->priority << '\n' << "heap[i]->priority: " << heap[i]->priority << endl;
 			TaskItem* temp = heap[i]; //swap values
@@ -261,44 +261,76 @@ bool PriorityQueue::dequeue() {
 		
 		size--;
 		
-		j = 1;
-		
-		
-	while (j < size)
+		int i = size;
+			while (i > 1 && heap[i/2]->priority < heap[i]->priority)
 		{
-			if(heap[j] > heap[2*j]) //compare parent w/ left child
+		//	cout << "heap[i/2]->priority: " << heap[i/2]->priority << '\n' << "heap[i]->priority: " << heap[i]->priority << endl;
+			TaskItem* temp = heap[i]; //swap values
+			heap[i] = heap[i/2];
+			heap[i/2] = temp;
+			i /= 2;
+		}
+		
+		if(heap[1]->priority < heap[2]->priority)
+		{
+			TaskItem* temp = heap[2]; //swap values
+			heap[2] = heap[1];
+			heap[1] = temp;
+		}
+		
+	//	heap[i] = new TaskItem(val);
+	/*	while (i > 1)
+		{
+			if (heap[i/2]->priority < heap[i]->priority)
+			{
+			//	cout << "heap[i/2]->priority: " << heap[i/2]->priority << '\n' << "heap[i]->priority: " << heap[i]->priority << endl;
+				TaskItem* temp = heap[i]; //swap values
+				heap[i] = heap[i/2];
+				heap[i/2] = temp;
+				
+			}
+			i /= 2;
+		}
+	*/	
+		//j = 1;
+		
+		
+/*	while (j < size)
+		{
+			if(heap[j]->priority < heap[2*j]->priority) //compare parent w/ left child
 			{
 				TaskItem *temp = heap[j];
 				heap[j] = heap[2*j];
 				heap[2*j] = temp;//swap
 			}
-			else if (heap[j] > heap[2*j+1]) //compare parent w/ right child
+			else if (heap[j]->priority < heap[2*j+1]->priority) //compare parent w/ right child
 			{
 				TaskItem *temp = heap[j];
 				heap[j] = heap[2*j+1];
 				heap[2*j+1] = temp;
 			}
-		/*	else
+	else
 			{
 				TaskItem *temp = heap[j];
 				heap[j] = heap[j/2];
 				heap[j/2] = temp;
 			}
-		*/
+
 			j++;
-		}
-		
+		}	
+			
 	}
 		
-	/*	while( size + 1 > 1 && heap[(size+1)/2]->priority > heap[size + 1]->priority)
+		while( size + 1 > 1 && heap[(size+1)/2]->priority > heap[size + 1]->priority)
 		{
 			TaskItem *temp = heap[size + 1];
 			heap[size + 1] = heap[(size + 1)/2];
 			heap[(size + 1)/2] = temp;
 			size = (size+1)/2; //(size + 1) /= 2;
-		}		
+		}	
+	*/	
 	}
-	*/
+	
 //	size--;
 	return true;
 }

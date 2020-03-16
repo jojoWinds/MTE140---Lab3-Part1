@@ -12,27 +12,30 @@ using namespace std;
 int main()
 {
 	PriorityQueue queue1(6);
-	queue1.print();
+//	queue1.print();
 //	cout << queue1.get_size() << endl;
 //	cout << queue1.full() << endl;
 	
-	queue1.enqueue(PriorityQueue::TaskItem(500,"1st entered item"));
-	queue1.print();
+	queue1.enqueue(PriorityQueue::TaskItem(4,"1st entered item"));
+//	queue1.print();
 	
 	queue1.enqueue(PriorityQueue::TaskItem(112,"2nd entered item"));
-	queue1.print();
+//	queue1.print();
 	
 	queue1.enqueue(PriorityQueue::TaskItem(11,"3rd entered item"));
-	queue1.print();
+//	queue1.print();
 	
-	queue1.enqueue(PriorityQueue::TaskItem(2,"4th entered item"));
-	queue1.print();
+	queue1.enqueue(PriorityQueue::TaskItem(300,"4th entered item"));
+//	queue1.print();
 	
 	queue1.enqueue(PriorityQueue::TaskItem(50,"5th entered item"));
 	queue1.print();
 	
 	queue1.dequeue();
+//	queue1.dequeue();
+	
 	queue1.print();
+	//queue1.print();
 	
 	return 0;
 }
