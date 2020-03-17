@@ -32,10 +32,14 @@ int main()
 	queue1.print();
 	
 	queue1.dequeue();
-//	queue1.dequeue();
-	
 	queue1.print();
-	//queue1.print();
+	
+	queue1.enqueue(PriorityQueue::TaskItem(11,"6th entered item"));
+	queue1.enqueue(PriorityQueue::TaskItem(12,"7th entered item"));
+	queue1.enqueue(PriorityQueue::TaskItem(60,"8th entered item"));
+	queue1.print();
+	
+	cout << queue1.full() << endl;
 	
 	return 0;
 }
