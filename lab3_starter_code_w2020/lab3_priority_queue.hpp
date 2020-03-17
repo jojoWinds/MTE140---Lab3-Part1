@@ -258,28 +258,30 @@ bool PriorityQueue::dequeue() {
 		delete del;
 		del = NULL;
 		
-		size--;
+		size--;		
 		
-		
-		int i = size;
-		while (i > 1 && heap[i/2]->priority < heap[i]->priority)
+		if (size > 1)
 		{
-			TaskItem* temp = heap[i]; //swap values
-			heap[i] = heap[i/2];
-			heap[i/2] = temp;
-			i /= 2;
-		}
-		
-		int k = 0;
-		if(heap[2]->priority > heap[3]->priority)
-			k = 2;
-		else
-			k = 3;
-		if(heap[1]->priority < heap[k]->priority)
-		{
-			TaskItem* temp = heap[k]; //swap values
-			heap[k] = heap[1];
-			heap[1] = temp;
+			int i = size;
+			while (i > 1 && heap[i/2]->priority < heap[i]->priority)
+			{
+				TaskItem* temp = heap[i]; //swap values
+				heap[i] = heap[i/2];
+				heap[i/2] = temp;
+				i /= 2;
+			}
+			
+			int k = 0;
+			if(heap[2]->priority > heap[3]->priority)
+				k = 2;
+			else
+				k = 3;
+			if(heap[1]->priority < heap[k]->priority)
+			{
+				TaskItem* temp = heap[k]; //swap values
+				heap[k] = heap[1];
+				heap[1] = temp;
+			}			
 		}
 		
 		return true;
