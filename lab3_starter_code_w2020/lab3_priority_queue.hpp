@@ -260,7 +260,17 @@ bool PriorityQueue::dequeue() {
 		
 		size--;		
 		
-		if (size > 1)
+		int i = size;
+		while (i > 1 && heap[i/2]->priority < heap[i]->priority)
+		{
+		//	cout << "heap[i/2]->priority: " << heap[i/2]->priority << '\n' << "heap[i]->priority: " << heap[i]->priority << endl;
+			TaskItem* temp = heap[i]; //swap values
+			heap[i] = heap[i/2];
+			heap[i/2] = temp;
+			i /= 2;
+		}
+		
+	/*	if (size > 1)
 		{
 			int i = size;
 			while (i > 1 && heap[i/2]->priority < heap[i]->priority)
@@ -283,10 +293,10 @@ bool PriorityQueue::dequeue() {
 				heap[1] = temp;
 			}			
 		}
-		
-		return true;
+	*/	
+		//return true;
 	}
 	
-	return false;
+	return true;
 }
 #endif 
