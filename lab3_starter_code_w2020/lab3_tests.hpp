@@ -9,7 +9,7 @@
 #include <queue>
 
 #include "lab3_priority_queue.hpp"
-//#include "lab3_binary_search_tree.hpp"
+#include "lab3_binary_search_tree.hpp"
 
 class PriorityQueueTest {
 public:
@@ -84,7 +84,7 @@ public:
 		return true;
 	}
 };
-/*
+
 class BinarySearchTreeTest {
 public:
 	bool insert_nodes(BinarySearchTree &tree, int *in, int nin) {
@@ -261,5 +261,5 @@ public:
 		ASSERT_TRUE(!bst.remove(BinarySearchTree::TaskItem(in[0],"Test Task")));
 		return true;
 	}
-};*/
+};
 #endif

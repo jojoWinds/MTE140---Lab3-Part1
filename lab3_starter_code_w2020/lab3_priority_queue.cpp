@@ -1,5 +1,4 @@
 //#include "lab3_priority_queue.hpp"
-//
 //using namespace std;
 //
 //// PURPOSE: Parametric constructor 
@@ -42,7 +41,7 @@
 //	else
 //	{
 //		// manual check for size 
-//		/*
+//		/*	
 //		int count = 0;
 //		while(heap[count])
 //		{
@@ -61,7 +60,7 @@
 //// PURPOSE: Returns true if the priority queue is empty; false, otherwise
 //bool PriorityQueue::empty() const {
 //	
-//	if (this->get_size() == 0 || *heap[0] == NULL || size == 0)
+//	if (size == 0)
 //		return true;
 //	else
 //		return false;
@@ -71,8 +70,8 @@
 //bool PriorityQueue::full() const {
 //	
 //	// capacity = size of queue
-//	if( capacity == this->get_size())
-//		return true
+//	if( capacity == size)
+//		return true;
 //	else
 //		return false;
 //}
@@ -87,16 +86,18 @@
 //	
 //	//case 1: empty list
 //	if (this->empty())
-//		cout << "list is empty" << endl;
+//		cout << "list is empty" << '\n' << "------------" << endl;
 //	//case 2: non empty list
 //	else
 //	{
+//		cout << "**************************************" << endl;
 //		TaskItem* temp;
-//		for (int i=1; i < this->get_size(); i++)
+//		for (int i=1; i <= size; i++)
 //		{
 //			temp = heap[i];
-//			cout << "Priority: " << temp->priority << '\n' << "Description: " << temp->description << '\n' << "------------" << endl;			
+//			cout << "Position: " << i << '\n' << "Priority: " << temp->priority << '\n' << "Description: " << temp->description << '\n' << "------------" << endl;			
 //		}
+//		cout << "**************************************" << endl;
 //	}
 //}
 //
@@ -113,7 +114,7 @@
 //	//2nd case: returning what is in the 1st index as based on Max Heap ADT 
 //	else
 //	{
-//		return **heap[1];
+//		return *heap[1];
 //	}
 //	//return TaskItem(-1, "NULL");
 //}
@@ -130,8 +131,10 @@
 //	
 //	//case 1: base case: empty heap
 //	if (size == 0)
-//	{
+//	{		
 //		heap [1] = new TaskItem(val);
+//		size++;
+//		return true;
 //	}
 //	
 //	//case 2: general case: non-empty heap
@@ -146,10 +149,11 @@
 //			heap[i/2] = temp;
 //			i /= 2;
 //		}
+//		size++;
+//		return true;	
 //	}
 //	
-//	size++;
-//	return true;
+//	return false;
 //}
 //
 //// PURPOSE: Removes the top element with the maximum priority
@@ -167,16 +171,57 @@
 //	//2nd case: list is populated
 //	else
 //	{
-//		while( size + 1 > 1 && heap[(size+1)/2]->priority < heap[size + 1]->priority)
-//		{
-//			*TaskItem temp = heap[size + 1];
-//			heap[size + 1] = heap[(size + 1)/2];
-//			heap[(size + 1)/2] = temp;
-//			(size + 1) /= 2;
-//		}
+//		//swap root with last leaf node
+//		int j = size;
+//		TaskItem *temp = heap[j];
+//		heap[j] = heap[1];
+//		heap[1] = temp;
 //		
+//		//remove root from last position
+//		TaskItem *del = heap[j];
+//		delete del;
+//		del = NULL;
+//		
+//		size--;		
+//		
+//		//traverse tree top-to-bottom and swap nodes appropriately
+//		int i = 1; //start at root node
+//		bool flag = 0;
+//		
+//		//case 2: parent has 2 children
+//		while (flag == 0) //parent < left_child OR parent < right_child
+//		{			
+//			//case 1: parent < left_child
+//			if (2*i < size)
+//			{
+//				if (heap[i]->priority < heap[2*i]->priority)
+//				{
+//					TaskItem *temp = heap[i]; //holds parent
+//					heap[i] = heap[2*i];
+//					heap[2*i] = temp;
+//					
+//					i = 2*i; //will now be at previous position of child					
+//				}
+//			}
+//			
+//			//case 2: parent < right_child
+//			else if (2*i+1 < size)
+//			{
+//				if (heap[i]->priority < heap[2*i+1]->priority)
+//				{
+//					TaskItem *temp = heap[i]; //holds parent
+//					heap[i] = heap[2*i+1];
+//					heap[2*i+1] = temp;
+//					
+//					i = 2*i+1; //will now be at previous position of child					
+//				}
+//			}
+//			
+//			//stop looping
+//			if ((heap[i]->priority > heap[2*i+1]->priority) || (heap[i]->priority > heap[2*i]->priority))
+//				flag = 1;			
+//		}
 //	}
 //	
-//	size--;
 //	return true;
 //}
