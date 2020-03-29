@@ -19,13 +19,59 @@ unsigned int BinarySearchTree::get_size() const {
 // PURPOSE: Returns the maximum value of a node in the tree
 // if the tree is empty, it returns (-1, "N/A")
 BinarySearchTree::TaskItem BinarySearchTree::max() const {
-	return BinarySearchTree::TaskItem(-1, "N/A");
+	
+	//Logic:
+	//1. traverse to right child of root node if right child exists
+	//2. at current node:
+	// 2.1. if right child exists, travel to the right child
+	// 2.2. if right child doesn't exist, then current node is the node w/ highest key value
+	
+	
+	//base case: empty tree
+	if (size == 0)
+		return BinarySearchTree::TaskItem(-1, "N/A");
+	
+	//general case: non-empty tree
+	BinarySearchTree::TaskItem* cur = root;
+	while (cur && cur->right) //until find nodes that has NULL on right
+	{
+		cur = cur->right; //iterate through tree
+	}
+	
+	return BinarySearchTree::TaskItem(cur->priority, cur->description); //return found max val	
+	
+	
+	//returns max priority since this is max heap. so return top (root node)
+	//return BinarySearchTree::TaskItem(-1, "N/A");
 }
 
 // PURPOSE: Returns the minimum value of a node in the tree
 // if the tree is empty, it returns (-1, "N/A")
 BinarySearchTree::TaskItem BinarySearchTree::min() const {
-	return BinarySearchTree::TaskItem(-1, "N/A");
+	
+	
+	//Logic:
+	//1. traverse to left child of root node if left child exists
+	//2. at current node:
+	// 2.1. if left child exists, travel to the left child
+	// 2.2. if left child doesn't exist, then current node is the node w/ lowest key value
+	
+	
+	//base case: empty tree
+	if (size == 0)
+		return BinarySearchTree::TaskItem(-1, "N/A");
+		
+	//general case: non-empty tree
+	BinarySearchTree::TaskItem* cur = root;
+	while (curr && cur->left) //until find nodes that has NULL on left
+	{
+		cur = cur->left; //iterate through tree
+	}
+	
+	return BinarySearchTree::TaskItem(cur->priority, cur->description); //return found min val
+	
+	
+	//return BinarySearchTree::TaskItem(-1, "N/A");
 }
 
 // PURPOSE: Returns the tree height
@@ -40,6 +86,17 @@ void BinarySearchTree::print() const {
 // PURPOSE: Returns true if a node with the value val exists in the tree	
 // otherwise, returns false
 bool BinarySearchTree::exists( BinarySearchTree::TaskItem val ) const {
+	
+	
+	//Logic:
+	//1. set root node as current node to visit
+	//2. compare desired key value K w/ key value of current node Kc
+	//3. if K < Kc, then continue search in the left subtree of the current node
+	//4. if K > Kc, then continue search in the right subtree of the current node
+	//5. if K = Kc, then return current node and stop searching
+	//6. if current node is empty, serach has failed and so we stop searching
+	
+	
 	return false;
 }
 
@@ -61,11 +118,39 @@ int BinarySearchTree::get_node_depth( BinarySearchTree::TaskItem* n ) const {
 // PURPOSE: Inserts the value val into the tree if it is unique
 // returns true if successful; returns false if val already exists
 bool BinarySearchTree::insert( BinarySearchTree::TaskItem val ) {
+	
+	//Logic:
+	//1. set root node as the current node to visit
+	//2. compare the key value of the new node K w/ key value of current node Kc
+	//3. if K < Kc, then continue performing the insert operation on the left subtree
+	//4. if K > Kc, then continue performing the insert operation on the left subtree
+	//5. if current node is actually empty, insert node at current location and stop searching
+	
+	
     return false;
 }
 
 // PURPOSE: Removes the node with the value val from the tree
 // returns true if successful; returns false otherwise
 bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
+	
+	//Logic:
+	
+	//case 1: node is leaf node
+	//1. delete node
+	
+	//case 2: node has 1 child
+	//1. create a temp pointer to the node being deleted
+	//2. link the parent node to the child node
+	//3. delete the node pointed to by the temporary pointer
+	
+	//case 3: node has 2 child
+	//Option 1
+	//1. replace current node C w/ node w/ smallest key value D from C's right sub-tree
+	//2. delete node used for C's replacement
+	//Option 2
+	//1. replace current node C w/ node w/ largest key value D from C's left sub-tree
+	//2. delete node used for C's replacement
+	
     return false;
 }
