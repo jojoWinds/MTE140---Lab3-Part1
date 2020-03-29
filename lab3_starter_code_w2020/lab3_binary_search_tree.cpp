@@ -88,7 +88,7 @@ void BinarySearchTree::print() const {
 bool BinarySearchTree::exists( BinarySearchTree::TaskItem val ) const {
 	
 	
-	//Logic:
+	//Logic: *note: similar to search function
 	//1. set root node as current node to visit
 	//2. compare desired key value K w/ key value of current node Kc
 	//3. if K < Kc, then continue search in the left subtree of the current node
@@ -97,7 +97,22 @@ bool BinarySearchTree::exists( BinarySearchTree::TaskItem val ) const {
 	//6. if current node is empty, serach has failed and so we stop searching
 	
 	
+	BinarySearchTree::TaskItem* cur = root;
+	while(cur)
+	{
+		if (cur->priority == val->priority)
+			return true;
+		
+		//move left if val's priority is smaller than cur's priority
+		if (val->priority < cur->priority)
+			cur = cur->left;
+		//move right if val's priority is greater than cur's priority
+		else
+			cur = cur->right;
+	}
+	
 	return false;
+	
 }
 
 // PURPOSE: Optional helper function that returns a pointer to the root node
