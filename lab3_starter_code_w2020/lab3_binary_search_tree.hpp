@@ -1,3 +1,5 @@
+	//[1] GeeksforGeeks, "Print Binary Tree in 2-Dimensions," [Online]. Available: https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/.
+
 #ifndef LAB3_BINARY_SEARCH_TREE_HPP
 #define LAB3_BINARY_SEARCH_TREE_HPP
 
@@ -54,7 +56,7 @@ public:
 	// PURPOSE: Returns the tree height
 	unsigned int height() const;
 	
-	// PURPOSE: Prints the contents of the tree; format not specified
+	// PURPOSE: Prints the contents of the tree; format not specified [1]
 	void print() const;
 	
 	// PURPOSE: Returns true if a node with the value val exists in the tree	
@@ -84,5 +86,9 @@ public:
 	
 	// PURPOSE: Recursive function to help destructor remove all nodes
 	void clean_up(BinarySearchTree::TaskItem* task_item);
+	
+	// PURPOSE: This function does the actual printing (helper function for print function) [1]
+	void print_content(BinarySearchTree::TaskItem *root_item, int space);
+
 };
 #endif

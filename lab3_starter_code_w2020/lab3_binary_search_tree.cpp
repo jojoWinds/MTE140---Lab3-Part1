@@ -84,8 +84,10 @@ unsigned int BinarySearchTree::height() const {
 	return 0;
 }
 
-// PURPOSE: Prints the contents of the tree; format not specified
+// PURPOSE: Prints the contents of the tree; format not specified [1]
 void BinarySearchTree::print() const {
+	
+	print_content(root, 0); //calls helper function	
 }
 
 // PURPOSE: Returns true if a node with the value val exists in the tree	
@@ -202,3 +204,29 @@ void clean_up(BinarySearchTree::TaskItem* task_item)
 	clean_up(task_item->right);
 	delete task_item;
 }
+
+// PURPOSE: This function does the actual printing (helper function for print function) [1]
+void print_content(BinarySearchTree::TaskItem *root_item, int space)
+{
+	const int count = 10;
+	
+	//base case
+	if (root_item == NULL)
+		return;
+	
+	//increase distance between levels
+	space += count;
+	
+	//process right child first
+	print_content(root->right, space);
+	
+	//print current node after space
+	cout << endl;
+	for (int i = count; i < space; i++)
+		cout << " ";
+	cout << root_item->priority << endl;
+	
+	//process left child
+	print_content(root->left, space);	
+}
+
