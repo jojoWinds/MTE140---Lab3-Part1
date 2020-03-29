@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include "lab3_binary_search_tree.hpp"
 
 using namespace std;
@@ -81,6 +82,52 @@ BinarySearchTree::TaskItem BinarySearchTree::min() const {
 
 // PURPOSE: Returns the tree height
 unsigned int BinarySearchTree::height() const {
+	
+	//base case: empty tree
+	if (root == NULL) //or size == 0
+		return 0;
+	
+	//general case: non-empty tree
+	else
+	{
+		//create empty queue for level order traversal
+		queue<BinarySearchTree::TaskItem *> q;
+		
+		//enqueue root and initialize height
+		q.push(root);
+		int height = 0;
+		
+		while (1)
+		{
+			//number of nodes at current level
+			int nodeCount = q.size();
+			
+			//if number of nodes at this level is 0
+			if (nodeCount == 0)
+				return height;
+			
+			//increase height
+			height++;
+			
+			//dequeue all nodes of current level & enqueue all nodes of nxt level
+			while (nodeCount > 0)
+			{
+				BinarySearchTree::TaskItem* node = q.front();
+				q.pop();
+				
+				//push its children to queue
+				if (node->left != NULL)
+					q.push(node->left);
+				if (node->right != NULL)
+					q.push(node->right);
+					
+				nodeCount--;
+				
+				//at this point, queue has nodes of next level
+			}
+		}
+	}
+	
 	return 0;
 }
 
