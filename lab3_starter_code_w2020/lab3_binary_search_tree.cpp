@@ -129,7 +129,7 @@ BinarySearchTree::TaskItem* BinarySearchTree::get_root_node() {
 
 // PURPOSE: Optional helper function that returns the root node pointer address
 BinarySearchTree::TaskItem** BinarySearchTree::get_root_node_address() {
-    return NULL;
+    return &root;
 }
 
 // PURPOSE: Optional helper function that gets the maximum depth for a given node
