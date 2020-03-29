@@ -95,7 +95,7 @@ unsigned int BinarySearchTree::height() const {
 		
 		//enqueue root and initialize height
 		q.push(root);
-		int height = 0;
+		unsigned int height = 0;
 		
 		while (1)
 		{
@@ -179,10 +179,31 @@ BinarySearchTree::TaskItem** BinarySearchTree::get_root_node_address() {
     return &root;
 }
 
-// PURPOSE: Optional helper function that gets the maximum depth for a given node
+// PURPOSE: Optional helper function that gets the maximum depth for a given node [2]
 int BinarySearchTree::get_node_depth( BinarySearchTree::TaskItem* n ) const {
 	
+	//check if node exists in tree
+	if (!n->priority.exists())
+		return;
 	
+	//find node and return depth value
+	BinarySearchTree::TaskItem* cur = root;
+	int depth = 0;
+	
+	while(cur)
+	{
+		if (cur->priority == n->priority)
+			return depth;
+		
+		//move left if val's priority is smaller than cur's priority
+		if (val->priority < cur->priority)
+			cur = cur->left;
+		//move right if val's priority is greater than cur's priority
+		else
+			cur = cur->right;
+			
+		depth++;
+	}
 	
 	return 0;
 }

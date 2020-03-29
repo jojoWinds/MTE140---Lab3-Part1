@@ -1,5 +1,5 @@
 //[1] GeeksforGeeks, "Print Binary Tree in 2-Dimensions," [Online]. Available: https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/.
-//[1] GeeksforGeeks, "Iterative Method to find height of Binary Tree," [Online]. Available: https://www.geeksforgeeks.org/iterative-method-to-find-height-of-binary-tree/.
+//[2] GeeksforGeeks, "Iterative Method to find height of Binary Tree," [Online]. Available: https://www.geeksforgeeks.org/iterative-method-to-find-height-of-binary-tree/.
 
 #ifndef LAB3_BINARY_SEARCH_TREE_HPP
 #define LAB3_BINARY_SEARCH_TREE_HPP
