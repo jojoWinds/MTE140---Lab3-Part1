@@ -249,52 +249,56 @@ bool PriorityQueue::dequeue() {
 	//2nd case: list is populated
 	else
 	{
+		//swap root with last leaf node
 		int j = size;
 		TaskItem *temp = heap[j];
 		heap[j] = heap[1];
 		heap[1] = temp;
 		
+		//remove root from last position
 		TaskItem *del = heap[j];
 		delete del;
 		del = NULL;
 		
 		size--;		
 		
-		int i = size;
-		while (i > 1 && heap[i/2]->priority < heap[i]->priority)
-		{
-		//	cout << "heap[i/2]->priority: " << heap[i/2]->priority << '\n' << "heap[i]->priority: " << heap[i]->priority << endl;
-			TaskItem* temp = heap[i]; //swap values
-			heap[i] = heap[i/2];
-			heap[i/2] = temp;
-			i /= 2;
-		}
+		//traverse tree top-to-bottom and swap nodes appropriately
+		int i = 1; //start at root node
+		bool flag = 0;
 		
-	/*	if (size > 1)
-		{
-			int i = size;
-			while (i > 1 && heap[i/2]->priority < heap[i]->priority)
+		//case 2: parent has 2 children
+		while (flag == 0) //parent < left_child OR parent < right_child
+		{			
+			//case 1: parent < left_child
+			if (2*i < size)
 			{
-				TaskItem* temp = heap[i]; //swap values
-				heap[i] = heap[i/2];
-				heap[i/2] = temp;
-				i /= 2;
+				if (heap[i]->priority < heap[2*i]->priority)
+				{
+					TaskItem *temp = heap[i]; //holds parent
+					heap[i] = heap[2*i];
+					heap[2*i] = temp;
+					
+					i = 2*i; //will now be at previous position of child					
+				}
 			}
 			
-			int k = 0;
-			if(heap[2]->priority > heap[3]->priority)
-				k = 2;
-			else
-				k = 3;
-			if(heap[1]->priority < heap[k]->priority)
+			//case 2: parent < right_child
+			else if (2*i+1 < size)
 			{
-				TaskItem* temp = heap[k]; //swap values
-				heap[k] = heap[1];
-				heap[1] = temp;
-			}			
+				if (heap[i]->priority < heap[2*i+1]->priority)
+				{
+					TaskItem *temp = heap[i]; //holds parent
+					heap[i] = heap[2*i+1];
+					heap[2*i+1] = temp;
+					
+					i = 2*i+1; //will now be at previous position of child					
+				}
+			}
+			
+			//stop looping
+			if ((heap[i]->priority > heap[2*i+1]->priority) || (heap[i]->priority > heap[2*i]->priority))
+				flag = 1;			
 		}
-	*/	
-		//return true;
 	}
 	
 	return true;
