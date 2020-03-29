@@ -79,5 +79,10 @@ public:
 	// PURPOSE: Removes the node with the value val from the tree
 	// returns true if successful; returns false otherwise
 	bool remove(TaskItem val);
+	
+	// HELPER FUNCTIONS
+	
+	// PURPOSE: Recursive function to help destructor remove all nodes
+	void clean_up(BinarySearchTree::TaskItem* task_item);
 };
 #endif

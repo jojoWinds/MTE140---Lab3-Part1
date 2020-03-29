@@ -5,10 +5,15 @@ using namespace std;
 
 // PURPOSE: Default/empty constructor
 BinarySearchTree::BinarySearchTree() {
+	root = NULL;
+	root = 0;
 }
 
 // PURPOSE: Explicit destructor of the class BinarySearchTree
 BinarySearchTree::~BinarySearchTree() {
+	clean_up(root);	
+	root = NULL;
+	size = 0;	
 }
 
 // PURPOSE: Returns the number of nodes in the tree
@@ -186,4 +191,14 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 	//2. delete node used for C's replacement
 	
     return false;
+}
+
+// PURPOSE: Recursive function to help destructor remove all nodes
+void clean_up(BinarySearchTree::TaskItem* task_item)
+{
+	if (task_item == NULL)
+		return;
+	clean_up(task_item->left);
+	clean_up(task_item->right);
+	delete task_item;
 }
