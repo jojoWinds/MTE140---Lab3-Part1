@@ -142,7 +142,25 @@ bool BinarySearchTree::insert( BinarySearchTree::TaskItem val ) {
 	//5. if current node is actually empty, insert node at current location and stop searching
 	
 	
-    return false;
+	BinarySearchTree::TaskItem** cur = &root; //set cur to point to address of root
+	while(*cur)
+	{
+		//check for duplicates
+		if ((*cur)->priority == val.priority)
+			return false;
+		
+		//move left if priority of val is smaller than cur's
+		if (val.priority < (*cur)->priority)
+			cur = &((*cur)->left); //points to location where *cur's left pointer is stored
+		//move right if priority of val is greater than cur's
+		else
+			cur = &((*cur)->right); //points to location where *cur's right pointer is stored
+	}
+	
+	*cur = new BinarySearchTree::TaskItem(val->priority, val->description);
+	++size;
+	return true;
+	
 }
 
 // PURPOSE: Removes the node with the value val from the tree
