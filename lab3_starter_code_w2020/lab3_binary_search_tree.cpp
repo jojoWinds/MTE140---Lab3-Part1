@@ -12,8 +12,8 @@ BinarySearchTree::~BinarySearchTree() {
 }
 
 // PURPOSE: Returns the number of nodes in the tree
-unsigned int BinarySearchTree::get_size() const {
-	return 0;
+unsigned int BinarySearchTree::get_size() const {	
+	return size;
 }
 
 // PURPOSE: Returns the maximum value of a node in the tree
