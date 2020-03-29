@@ -209,36 +209,39 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 	{
 		delete root;
 		root = NULL;
+		
+		return true;
 	}
 	
 	BinarySearchTree::TaskItem* parent = NULL;
 	BinarySearchTree::TaskItem* cur = root;
 	while(cur->priority != val->priority) //iterate through tree until find desired node
 	{
+		parent = cur;
+		
 		//move left if val's priority is smaller than cur's priority
 		if (val->priority < cur->priority)
-		{
-			parent = cur;
 			cur = cur->left;
-		}			
 		//move right if val's priority is greater than cur's priority
 		else
-		{
-			parent = cur;
 			cur = cur->right;
-		}			
 	}
 	
 	//case 1
 	if (cur->left == NULL && cur->right == NULL)
 	{
+		//case 1.1: left of parent
 		if (parent->left == cur)
 			parent->left = NULL;
-		else
+		//case 1.2: right of parent
+		else if (cur->right == cur)
 			parent->right = NULL;
 		
+		//remove cur
 		delete cur;
 		cur = NULL;
+		
+		return true;
 	}
 	
 	//case 2
@@ -253,9 +256,6 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 			//right of cur
 			else if (cur->right != NULL && cur->left == NULL)
 				parent->left = cur->right;
-			
-			delete cur;
-			cur = NULL;
 		}
 		
 		//case 2.2: right of parent
@@ -267,14 +267,41 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 			//right of cur
 			else if (cur->right != NULL && cur->left == NULL)
 				parent->right = cur->right;
-			
-			delete cur;
-			cur = NULL;
 		}
+		
+		//remove cur
+		delete cur;
+		cur = NULL;
+		
+		return true;
 	}
 
 	//case 3
-	
+	else
+	{
+		//find cur's successor node to swap (smallest in right subtree)
+		BinarySearchTree::TaskItem* successor_node = cur->right;
+		while (successor_node && successor_node->left != NULL)
+			successor_node = successor_node->left;
+		
+		//case 3.1: left of parent
+		if (parent->left == cur)
+			parent->left = successor_node;
+		
+		//case 3.2: right of parent
+		else (parent->right == cur)
+			parent->right = successor_node;
+		
+		//assign successor_node w/ cur's children
+		successor_node->right = cur->right;
+		successor_node->left = cur->left;
+		
+		//remove cur
+		delete cur;
+		cur = NULL;
+		
+		return true;
+	}
 	
     return false;
 }
