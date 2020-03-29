@@ -164,8 +164,9 @@ bool BinarySearchTree::insert( BinarySearchTree::TaskItem val ) {
 			cur = &((*cur)->right); //points to location where *cur's right pointer is stored
 	}
 	
-	*cur = new BinarySearchTree::TaskItem(val->priority, val->description);
-	++size;
+	*cur = new BinarySearchTree::TaskItem(val->priority, val->description); //add new node to tree
+	++size; //iterate size
+	
 	return true;
 	
 }
@@ -175,6 +176,12 @@ bool BinarySearchTree::insert( BinarySearchTree::TaskItem val ) {
 bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 	
 	//Logic:
+	
+	//case 0: doesn't exist in tree (base case)
+	//1. return false
+	
+	//case 0.1.: there's only one node in tree (root node) (base case 2)
+	//1. delete root node
 	
 	//case 1: node is leaf node
 	//1. delete node
@@ -191,6 +198,83 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 	//Option 2
 	//1. replace current node C w/ node w/ largest key value D from C's left sub-tree
 	//2. delete node used for C's replacement
+	
+	
+	
+	//case 0
+	if (!exists(val))
+		return false;
+	//case 0.1.
+	if (root->left == NULL && root->right == NULL && root->priority == val->priority)
+	{
+		delete root;
+		root = NULL;
+	}
+	
+	BinarySearchTree::TaskItem* parent = NULL;
+	BinarySearchTree::TaskItem* cur = root;
+	while(cur->priority != val->priority) //iterate through tree until find desired node
+	{
+		//move left if val's priority is smaller than cur's priority
+		if (val->priority < cur->priority)
+		{
+			parent = cur;
+			cur = cur->left;
+		}			
+		//move right if val's priority is greater than cur's priority
+		else
+		{
+			parent = cur;
+			cur = cur->right;
+		}			
+	}
+	
+	//case 1
+	if (cur->left == NULL && cur->right == NULL)
+	{
+		if (parent->left == cur)
+			parent->left = NULL;
+		else
+			parent->right = NULL;
+		
+		delete cur;
+		cur = NULL;
+	}
+	
+	//case 2
+	else if ((cur->left != NULL && cur->right == NULL) || (cur->right != NULL && cur->left == NULL))
+	{
+		//case 2.1: left of parent
+		else if (parent->left == cur)
+		{
+			//left of cur
+			if (cur->left != NULL && cur->right == NULL)
+				parent->left = cur->left;
+			//right of cur
+			else if (cur->right != NULL && cur->left == NULL)
+				parent->left = cur->right;
+			
+			delete cur;
+			cur = NULL;
+		}
+		
+		//case 2.2: right of parent
+		else if (parent->right == cur)
+		{
+			//left of cur
+			if (cur->left != NULL && cur->right == NULL)
+				parent->right = cur->left;
+			//right of cur
+			else if (cur->right != NULL && cur->left == NULL)
+				parent->right = cur->right;
+			
+			delete cur;
+			cur = NULL;
+		}
+	}
+
+	//case 3
+	
 	
     return false;
 }
