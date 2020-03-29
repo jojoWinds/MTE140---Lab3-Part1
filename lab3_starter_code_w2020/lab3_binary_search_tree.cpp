@@ -124,7 +124,7 @@ bool BinarySearchTree::exists( BinarySearchTree::TaskItem val ) const {
 
 // PURPOSE: Optional helper function that returns a pointer to the root node
 BinarySearchTree::TaskItem* BinarySearchTree::get_root_node() {
-    return NULL;
+    return root;
 }
 
 // PURPOSE: Optional helper function that returns the root node pointer address
@@ -134,6 +134,9 @@ BinarySearchTree::TaskItem** BinarySearchTree::get_root_node_address() {
 
 // PURPOSE: Optional helper function that gets the maximum depth for a given node
 int BinarySearchTree::get_node_depth( BinarySearchTree::TaskItem* n ) const {
+	
+	
+	
 	return 0;
 }
 
