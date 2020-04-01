@@ -31,13 +31,14 @@ int main()
 	
 	BinarySearchTree::TaskItem task1 = tree1.max(); //test max() //status: pending
 	cout << "test max:" << '\n' << "priority: " << task1.priority << '\n' << "description: " << task1.description << endl;
-	BinarySearchTree::TaskItem task1 = tree1.min(); //test max() //status: pending
-	cout << "test max:" << '\n' << "priority: " << task1.priority << '\n' << "description: " << task1.description << endl;
+	BinarySearchTree::TaskItem task2 = tree1.min(); //test max() //status: pending
+	cout << "test max:" << '\n' << "priority: " << task2.priority << '\n' << "description: " << task2.description << endl;
 	
-	
-//	test = tree1.remove(BinarySearchTree::TaskItem(1,"task1")); //test remove //status: pass
-//	cout << "test remove: " << test << endl;
-	
+	/*
+	test = tree1.remove(BinarySearchTree::TaskItem(1,"task1")); //test remove //status: pass
+	cout << "test remove: " << test << endl;
+	*/
+	tree1.print();
 	
 	
 	return 0;

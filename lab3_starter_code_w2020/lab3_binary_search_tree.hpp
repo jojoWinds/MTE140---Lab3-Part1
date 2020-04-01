@@ -91,10 +91,10 @@ public:
 	void clean_up(TaskItem* task_item);
 	
 	// PURPOSE: Prints out post-order tree
-	bool pre_order(TaskItem* node);
+	void pre_order(TaskItem* node);
 	
 	// PURPOSE: Prints out in-order tree
-	bool in_order(TaskItem* node);
+	void in_order(TaskItem* node);
 };
 
 
@@ -229,16 +229,17 @@ unsigned int BinarySearchTree::height() const {
 
 // PURPOSE: Prints the contents of the tree; format not specified
 void BinarySearchTree::print() const {
-		
-//	//print pre-order content
-//	cout << "pre-order:" << endl;
-//	bool test = pre_order(root);
-//	cout << endl;
-//	
-//	//print in-order content
-//	cout << "in-order:" << endl;
-//	test = in_order(root);
-//	cout << endl;
+	
+	//print pre-order content
+	cout << "pre-order:" << endl;
+	pre_order(root);
+	cout << endl;
+	
+	//print in-order content
+	cout << "in-order:" << endl;
+	in_order(root);
+	cout << endl;
+	
 }
 
 // PURPOSE: Returns true if a node with the value val exists in the tree	
@@ -488,7 +489,7 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 }
 
 // PURPOSE: Recursive function to help destructor remove all nodes
-void BinarySearchTree::clean_up(BinarySearchTree::TaskItem* task_item)
+void BinarySearchTree::clean_up(struct BinarySearchTree::TaskItem* task_item)
 {
 	if (task_item == NULL)
 		return;
@@ -498,24 +499,22 @@ void BinarySearchTree::clean_up(BinarySearchTree::TaskItem* task_item)
 }
 
 // PURPOSE: Prints out post-order tree
-bool BinarySearchTree::pre_order(BinarySearchTree::TaskItem* node)
+void BinarySearchTree::pre_order(struct BinarySearchTree::TaskItem* node)
 {
 	if (node == NULL)
-		return 0;
+		return;
 	cout << node->priority << " ";
-	bool test = 1;
-	test = pre_order(node->left);
-	test = pre_order(node->right);
+	pre_order(node->left);
+	pre_order(node->right);
 }
 
 // PURPOSE: Prints out in-order tree
-bool BinarySearchTree::in_order(BinarySearchTree::TaskItem* node)
+void BinarySearchTree::in_order(struct BinarySearchTree::TaskItem* node)
 {
 	if (node == NULL)
-		return 0;
-	bool test = 1;
-	test = pre_order(node->left);
-	test = pre_order(node->right);
+		return;
+	pre_order(node->left);
+	pre_order(node->right);
 	cout << node->priority << " ";
 }
 
