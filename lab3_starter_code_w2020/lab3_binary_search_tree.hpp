@@ -230,15 +230,15 @@ unsigned int BinarySearchTree::height() const {
 // PURPOSE: Prints the contents of the tree; format not specified
 void BinarySearchTree::print() const {
 		
-	//print pre-order content
-	cout << "pre-order:" << endl;
-	bool test = pre_order(root);
-	cout << endl;
-	
-	//print in-order content
-	cout << "in-order:" << endl;
-	test = in_order(root);
-	cout << endl;
+//	//print pre-order content
+//	cout << "pre-order:" << endl;
+//	bool test = pre_order(root);
+//	cout << endl;
+//	
+//	//print in-order content
+//	cout << "in-order:" << endl;
+//	test = in_order(root);
+//	cout << endl;
 }
 
 // PURPOSE: Returns true if a node with the value val exists in the tree	

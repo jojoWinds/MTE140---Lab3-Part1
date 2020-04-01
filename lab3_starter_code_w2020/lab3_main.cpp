@@ -6,6 +6,7 @@
 
 using namespace std;
 
+/*
 // PURPOSE: Returns the test result
 string get_status_str(bool status) {
     return status ? "TEST PASSED" : "TEST FAILED";
@@ -13,7 +14,22 @@ string get_status_str(bool status) {
 
 #define ASSERT_TRUE(T) if (!(T)) return false;
 #define ASSERT_FALSE(T) if ((T)) return false;
+*/
 
+//test main function
+int main()
+{
+	BinarySearchTree tree1;		//test constructor //status: pass
+	tree1.~BinarySearchTree(); 	//test destructor //status: pass
+	
+	bool test = tree1.insert(BinarySearchTree::TaskItem(1,"task1"));	//test insert //status: pending
+	cout << test << endl;
+	
+	
+	return 0;
+}
+
+/* //ORIGINAL main function
 int main() {
 
     PriorityQueueTest pqueue_test;
@@ -68,7 +84,7 @@ int main() {
 	return 0;
 }
 
-
+*/
 
 
 
