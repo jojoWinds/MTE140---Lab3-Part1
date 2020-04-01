@@ -95,6 +95,9 @@ public:
 	
 	// PURPOSE: Prints out in-order tree
 	void in_order(TaskItem* node) const;
+	
+	// PURPOSE: Prints out BFT tree
+	void BFT(TaskItem* node) const;
 };
 
 
@@ -230,6 +233,14 @@ unsigned int BinarySearchTree::height() const {
 // PURPOSE: Prints the contents of the tree; format not specified
 void BinarySearchTree::print() const {
 	
+	//print root node
+	cout << "root node: " << root->priority << endl;
+	
+	//print BFT content
+	cout << "BFT:" << endl;
+	BFT(root);
+	cout << endl;
+	
 	//print pre-order content
 	cout << "pre-order:" << endl;
 	pre_order(root);
@@ -347,6 +358,8 @@ bool BinarySearchTree::insert( BinarySearchTree::TaskItem val ) {
 	}
 	BinarySearchTree::TaskItem* new_val = new BinarySearchTree::TaskItem(val);
 	*cur = new BinarySearchTree::TaskItem(new_val->priority, new_val->description); //add new node to tree
+	//update root
+	cout << "root in insert function: " << root->priority << endl;
 	++size; //iterate size
 	
 	return true;
@@ -524,6 +537,26 @@ void BinarySearchTree::in_order(struct BinarySearchTree::TaskItem* node) const
 	cout << node->priority << " ";
 }
 
-
+// PURPOSE: Prints out BFT tree
+void BinarySearchTree::BFT(struct BinarySearchTree::TaskItem* node) const
+{
+	if (node == NULL)
+		return;
+	
+	queue<BinarySearchTree::TaskItem*> bft_queue;
+	bft_queue.push(node);
+	
+	while(!bft_queue.empty())
+	{
+		BinarySearchTree::TaskItem* cur = bft_queue.front();
+		bft_queue.pop();
+		
+		cout << cur->priority << " ";
+		if (cur->left)
+			bft_queue.push(cur->left);
+		if (cur->right)
+			bft_queue.push(cur->right);
+	}
+}
 
 #endif

@@ -28,11 +28,19 @@ int main()
 	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(3,"task3"));
 	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(50,"task50"));
+	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(5,"task5"));
+	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(6,"task6"));
+	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(7,"task7"));
+	cout << "test insert: " << test << endl;
 	
 	BinarySearchTree::TaskItem task1 = tree1.max(); //test max() //status: pending
 	cout << "test max:" << '\n' << "priority: " << task1.priority << '\n' << "description: " << task1.description << endl;
-	BinarySearchTree::TaskItem task2 = tree1.min(); //test max() //status: pending
-	cout << "test max:" << '\n' << "priority: " << task2.priority << '\n' << "description: " << task2.description << endl;
+	BinarySearchTree::TaskItem task2 = tree1.min(); //test min() //status: pending
+	cout << "test min:" << '\n' << "priority: " << task2.priority << '\n' << "description: " << task2.description << endl;
 	
 	/*
 	test = tree1.remove(BinarySearchTree::TaskItem(1,"task1")); //test remove //status: pass
