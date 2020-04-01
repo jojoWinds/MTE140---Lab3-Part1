@@ -91,10 +91,10 @@ public:
 	void clean_up(TaskItem* task_item);
 	
 	// PURPOSE: Prints out post-order tree
-	void pre_order(TaskItem* node);
+	void pre_order(TaskItem* node) const;
 	
 	// PURPOSE: Prints out in-order tree
-	void in_order(TaskItem* node);
+	void in_order(TaskItem* node) const;
 };
 
 
@@ -103,14 +103,14 @@ public:
 // PURPOSE: Default/empty constructor
 BinarySearchTree::BinarySearchTree() {
 	root = NULL;
-	root = 0;
+	size = 0;
 }
 
 // PURPOSE: Explicit destructor of the class BinarySearchTree
 BinarySearchTree::~BinarySearchTree() {
 	clean_up(root);	
-	root = NULL;
-	size = 0;	
+	//root = NULL;
+	size = 0;
 }
 
 // PURPOSE: Returns the number of nodes in the tree
@@ -389,6 +389,7 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 	{
 		delete root;
 		root = NULL;
+		size--;
 		
 		return true;
 	}
@@ -420,6 +421,7 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 		//remove cur
 		delete cur;
 		cur = NULL;
+		size--;
 		
 		return true;
 	}
@@ -452,6 +454,7 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 		//remove cur
 		delete cur;
 		cur = NULL;
+		size--;
 		
 		return true;
 	}
@@ -481,6 +484,7 @@ bool BinarySearchTree::remove( BinarySearchTree::TaskItem val ) {
 		//remove cur
 		delete cur;
 		cur = NULL;
+		size--;
 		
 		return true;
 	}
@@ -495,11 +499,13 @@ void BinarySearchTree::clean_up(struct BinarySearchTree::TaskItem* task_item)
 		return;
 	clean_up(task_item->left);
 	clean_up(task_item->right);
+	
 	delete task_item;
+	task_item = NULL;
 }
 
 // PURPOSE: Prints out post-order tree
-void BinarySearchTree::pre_order(struct BinarySearchTree::TaskItem* node)
+void BinarySearchTree::pre_order(struct BinarySearchTree::TaskItem* node) const
 {
 	if (node == NULL)
 		return;
@@ -509,7 +515,7 @@ void BinarySearchTree::pre_order(struct BinarySearchTree::TaskItem* node)
 }
 
 // PURPOSE: Prints out in-order tree
-void BinarySearchTree::in_order(struct BinarySearchTree::TaskItem* node)
+void BinarySearchTree::in_order(struct BinarySearchTree::TaskItem* node) const
 {
 	if (node == NULL)
 		return;
