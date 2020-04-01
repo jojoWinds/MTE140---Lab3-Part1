@@ -12,7 +12,7 @@ using namespace std;
 
 // PURPOSE: Models a Binary Search Tree of Task Items
 class BinarySearchTree {
-protected:
+public: //need to place back as 'protected'*****************************************************
 	// PURPOSE: Models a single Task Item as a Tree Node
 	struct TaskItem {
 		int priority; // normal values are greater than zero

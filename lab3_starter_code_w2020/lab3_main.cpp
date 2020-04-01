@@ -22,8 +22,22 @@ int main()
 	BinarySearchTree tree1;		//test constructor //status: pass
 	tree1.~BinarySearchTree(); 	//test destructor //status: pass
 	
-	bool test = tree1.insert(BinarySearchTree::TaskItem(1,"task1"));	//test insert //status: pending
-	cout << test << endl;
+	bool test = tree1.insert(BinarySearchTree::TaskItem(1,"task1"));	//test insert //status: pass but need to put back to 'protected'
+	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(2,"task2"));
+	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(3,"task3"));
+	cout << "test insert: " << test << endl;
+	
+	BinarySearchTree::TaskItem task1 = tree1.max(); //test max() //status: pending
+	cout << "test max:" << '\n' << "priority: " << task1.priority << '\n' << "description: " << task1.description << endl;
+	BinarySearchTree::TaskItem task1 = tree1.min(); //test max() //status: pending
+	cout << "test max:" << '\n' << "priority: " << task1.priority << '\n' << "description: " << task1.description << endl;
+	
+	
+//	test = tree1.remove(BinarySearchTree::TaskItem(1,"task1")); //test remove //status: pass
+//	cout << "test remove: " << test << endl;
+	
 	
 	
 	return 0;
