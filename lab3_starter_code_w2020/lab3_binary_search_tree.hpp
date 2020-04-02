@@ -342,28 +342,40 @@ bool BinarySearchTree::insert( BinarySearchTree::TaskItem val ) {
 	//5. if current node is actually empty, insert node at current location and stop searching
 	
 	
-	BinarySearchTree::TaskItem** cur = &root; //set cur to point to address of root
-	while(*cur)
+	//case 1: if tree is empty
+	if (root == NULL)
 	{
-		//check for duplicates
-		if ((*cur)->priority == val.priority)
-			return false;
-		
-		//move left if priority of val is smaller than cur's
-		if (val.priority < (*cur)->priority)
-			cur = &((*cur)->left); //points to location where *cur's left pointer is stored
-		//move right if priority of val is greater than cur's
-		else
-			cur = &((*cur)->right); //points to location where *cur's right pointer is stored
+		//BinarySearchTree::TaskItem* newnode = new BinarySearchTree::TaskItem(val.priority, val.description);
+		root = new BinarySearchTree::TaskItem(val.priority, val.description);
+		++size;
+		return true;
 	}
-	BinarySearchTree::TaskItem* new_val = new BinarySearchTree::TaskItem(val);
-	*cur = new BinarySearchTree::TaskItem(new_val->priority, new_val->description); //add new node to tree
-	//update root
-	cout << "root in insert function: " << root->priority << endl;
-	++size; //iterate size
 	
-	return true;
+	//case 2: tree is non-empty
+	else
+	{
+		BinarySearchTree::TaskItem** cur = &root; //set cur to point to address of root
+		while(*cur) //?
+		{
+			//check for duplicates
+			if ((*cur)->priority == val.priority)
+				return false;
+			
+			//move left if priority of val is smaller than cur's
+			if (val.priority < (*cur)->priority)
+				cur = &((*cur)->left); //points to location where *cur's left pointer is stored
+			//move right if priority of val is greater than cur's
+			else if (val.priority > (*cur)->priority)
+				cur = &((*cur)->right); //points to location where *cur's right pointer is stored
+		}
+		BinarySearchTree::TaskItem* new_val = new BinarySearchTree::TaskItem(val);
+		*cur = new BinarySearchTree::TaskItem(new_val->priority, new_val->description); //add new node to tree
+		
+		++size; //iterate size		
+		return true;		
+	}
 	
+	return false;	
 }
 
 // PURPOSE: Removes the node with the value val from the tree
@@ -533,8 +545,8 @@ void BinarySearchTree::in_order(struct BinarySearchTree::TaskItem* node) const
 	if (node == NULL)
 		return;
 	pre_order(node->left);
-	pre_order(node->right);
 	cout << node->priority << " ";
+	pre_order(node->right);	
 }
 
 // PURPOSE: Prints out BFT tree

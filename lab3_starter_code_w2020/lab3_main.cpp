@@ -22,19 +22,23 @@ int main()
 	BinarySearchTree tree1;		//test constructor //status: pass
 	tree1.~BinarySearchTree(); 	//test destructor //status: pass
 	
-	bool test = tree1.insert(BinarySearchTree::TaskItem(1,"task1"));	//test insert //status: pass but need to put back to 'protected'
-	cout << "test insert: " << test << endl;
-	test = tree1.insert(BinarySearchTree::TaskItem(2,"task2"));
+	bool test = tree1.insert(BinarySearchTree::TaskItem(8,"task8"));	//test insert //status: pass but need to put back to 'protected'
 	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(3,"task3"));
 	cout << "test insert: " << test << endl;
-	test = tree1.insert(BinarySearchTree::TaskItem(50,"task50"));
+	test = tree1.insert(BinarySearchTree::TaskItem(1,"task1"));
 	cout << "test insert: " << test << endl;
-	test = tree1.insert(BinarySearchTree::TaskItem(5,"task5"));
+	test = tree1.insert(BinarySearchTree::TaskItem(10,"task10"));
 	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(6,"task6"));
 	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(14,"task14"));
+	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(4,"task4"));
+	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(7,"task7"));
+	cout << "test insert: " << test << endl;
+	test = tree1.insert(BinarySearchTree::TaskItem(13,"task13"));
 	cout << "test insert: " << test << endl;
 	
 	BinarySearchTree::TaskItem task1 = tree1.max(); //test max() //status: pending
