@@ -23,33 +23,25 @@ int main()
 	tree1.~BinarySearchTree(); 	//test destructor //status: pass
 	
 	bool test = tree1.insert(BinarySearchTree::TaskItem(8,"task8"));	//test insert //status: pass but need to put back to 'protected'
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(3,"task3"));
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(1,"task1"));
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(10,"task10"));
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(6,"task6"));
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(14,"task14"));
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(4,"task4"));
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(7,"task7"));
-	cout << "test insert: " << test << endl;
 	test = tree1.insert(BinarySearchTree::TaskItem(13,"task13"));
-	cout << "test insert: " << test << endl;
 	
 	BinarySearchTree::TaskItem task1 = tree1.max(); //test max() //status: pending
-	cout << "test max:" << '\n' << "priority: " << task1.priority << '\n' << "description: " << task1.description << endl;
+	cout << "test max:" << '\n' << "priority: " << task1.priority << '\n' << "description: " << task1.description << endl << endl;
 	BinarySearchTree::TaskItem task2 = tree1.min(); //test min() //status: pending
-	cout << "test min:" << '\n' << "priority: " << task2.priority << '\n' << "description: " << task2.description << endl;
+	cout << "test min:" << '\n' << "priority: " << task2.priority << '\n' << "description: " << task2.description << endl << endl;
 	
-	/*
-	test = tree1.remove(BinarySearchTree::TaskItem(1,"task1")); //test remove //status: pass
-	cout << "test remove: " << test << endl;
-	*/
+	
+	test = tree1.remove(BinarySearchTree::TaskItem(8,"task8")); //test remove //status: pass
+	cout << "test remove: " << test << endl << endl;
+	
+	
 	tree1.print();
 	
 	

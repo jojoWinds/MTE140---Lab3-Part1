@@ -39,65 +39,65 @@ public:
 	// CONSTRUCTOR AND DESTRUCTOR
 
 	// PURPOSE: Default/empty constructor
-	 BinarySearchTree();
+	BinarySearchTree();												//status: pass
 
 	// PURPOSE: Explicit destructor of the class BinarySearchTree
-	~BinarySearchTree();
+	~BinarySearchTree();											//status: pass
 
   	// ACCESSORS  
 	// PURPOSE: Returns the number of nodes in the tree
-  	unsigned int get_size() const;
+  	unsigned int get_size() const;									//status: TBD
   
 	// PURPOSE: Returns the maximum value of a node in the tree
   	// if the tree is empty, it returns (-1, "N/A")
-  	TaskItem max() const;
+  	TaskItem max() const;											//status: pass
 
 	// PURPOSE: Returns the minimum value of a node in the tree
   	// if the tree is empty, it returns (-1, "N/A")
-	TaskItem min() const;
+	TaskItem min() const;											//status: pass
 	
 	// PURPOSE: Returns the tree height
-	unsigned int height() const;
+	unsigned int height() const;									//status: TBD
 	
 	// PURPOSE: Prints the contents of the tree; format not specified [1]
-	void print() const;
+	void print() const;												//status: pass
 	
 	// PURPOSE: Returns true if a node with the value val exists in the tree	
 	// otherwise, returns false
-	bool exists(TaskItem val) const;
+	bool exists(TaskItem val) const;								//status: TBD
   
   	// PURPOSE: Optional helper function that returns a pointer to the root node
-	TaskItem* get_root_node();
+	TaskItem* get_root_node();										//status: TBD
 
 	// PURPOSE: Optional helper function that returns the root node pointer address
-	TaskItem** get_root_node_address();
+	TaskItem** get_root_node_address();								//status: TBD
   
   	// PURPOSE: Optional helper function that gets the maximum depth for a given node
-	int get_node_depth(TaskItem* n) const;
+	int get_node_depth(TaskItem* n) const;							//status: TBD
   
   	// MUTATORS
   
 	// PURPOSE: Inserts the value val into the tree if it is unique
   	// returns true if successful; returns false if val already exists
-	bool insert(TaskItem val);
+	bool insert(TaskItem val);										//status: pass
 	
 	// PURPOSE: Removes the node with the value val from the tree
 	// returns true if successful; returns false otherwise
-	bool remove(TaskItem val);
+	bool remove(TaskItem val);										//status: TBD
 	
 	// HELPER FUNCTIONS
 	
 	// PURPOSE: Recursive function to help destructor remove all nodes
-	void clean_up(TaskItem* task_item);
+	void clean_up(TaskItem* task_item);								//status: pass
 	
 	// PURPOSE: Prints out post-order tree
-	void pre_order(TaskItem* node) const;
+	void pre_order(TaskItem* node) const;							//status: pass
 	
 	// PURPOSE: Prints out in-order tree
-	void in_order(TaskItem* node) const;
+	void in_order(TaskItem* node) const;							//status: pass
 	
 	// PURPOSE: Prints out BFT tree
-	void BFT(TaskItem* node) const;
+	void BFT(TaskItem* node) const;									//status: pass
 };
 
 
